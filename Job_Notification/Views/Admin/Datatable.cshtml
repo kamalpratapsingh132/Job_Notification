@@ -1,0 +1,211 @@
+﻿@model IEnumerable<Job_Notification.Models.Add_jobs>
+@{
+    ViewData["Title"] = "Datatable";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    //Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Datatable";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AllEmployees</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
+</head>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        <form class="d-none d-md-flex ms-4">
+            <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+        </form>
+        <div class="navbar-nav align-items-center ms-auto">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa fa-envelope me-lg-2"></i>
+                    <span class="d-none d-lg-inline-flex">Message</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                    <a href="#" class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <div class="ms-2">
+                                <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                        </div>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <div class="ms-2">
+                                <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                        </div>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <div class="d-flex align-items-center">
+                            <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <div class="ms-2">
+                                <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                        </div>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item text-center">See all message</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa fa-bell me-lg-2"></i>
+                    <span class="d-none d-lg-inline-flex">Notificatin</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">Profile updated</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">New user added</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">Password changed</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item text-center">See all notifications</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                    <span class="d-none d-lg-inline-flex">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                    <a href="#" class="dropdown-item">My Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    <table id="dtHorizontalVerticalExample" class="table table-dark" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <td>job_title</td>
+                <td>openings</td>
+                <td>location</td>
+                <td>salary</td>
+                <td>must_skills</td>
+                <td>others_skills</td>
+                <td>job_description</td>
+                <td>industry</td>
+                <td>functional_area</td>
+                <td>role</td>
+                <td>employment_type</td>
+                <td>education</td>
+                <td>company_name</td>
+                <td>about_company</td>
+                <td>Action</td>
+
+            </tr>
+        </thead>
+
+        @foreach (var emps in Model)
+        {
+    <tr>
+        <td>@emps.job_title</td>
+        <td>@emps.openings</td>
+        <td>@emps.location</td>
+        <td>@emps.salary</td>
+        <td>@emps.must_skills</td>
+        <td>@emps.others_skills</td>
+        <td>@emps.job_description</td>
+        <td>@emps.industry</td>
+        <td>@emps.functional_area</td>
+        <td>@emps.role</td>
+        <td>@emps.employment_type</td>
+        <td>@emps.education</td>
+        <td>@emps.company_name</td>
+        <td>@emps.about_company</td>
+        <td>
+            <a asp-action="Delete" asp-controller="User" asp-route-ID="@emps.ID">Delete</a>
+            <a asp-action="Edit" asp-controller="User" asp-route-ID="@emps.ID">Edit</a>
+        </td>
+    </tr>
+        }
+
+
+        @*<tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>PhoneNumber</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>*@
+    </table>
+
+@section Scripts
+{
+    <script src="~/Datatables/js/dataTables.bootstrap4.js"></script>
+    <script src="~/Datatables/js/jquery.dataTables.min.js"></script>
+
+}
+<script>
+
+    $(document).ready(function () {
+        $('#dtHorizontalVerticalExample').DataTable({
+            "scrollX": true,
+            "scrollY": 200,
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+
+
+</script>
+
+
+
+
+
+
+
